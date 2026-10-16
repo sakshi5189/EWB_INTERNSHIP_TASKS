@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var subtotal = Number(prompt("Enter bill amount:"));
+var tipPercent = Number(prompt("Enter tip percentage:"));
+
+var tip = subtotal * tipPercent / 100;
+var total = subtotal;
+total += tip;
+
+document.write("Subtotal: $" + subtotal + "<br>");
+document.write("Tip Percentage: " + tipPercent + "%<br>");
+document.write("Calculated Tip: $" + tip + "<br>");
+document.write("Total Amount to Pay: $" + total + "<br>");
+</script>
+</body>
+</html>

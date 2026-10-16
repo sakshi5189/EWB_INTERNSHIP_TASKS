@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var score = Number(prompt("Enter your test score (0-100):"));
+
+if (score < 0 || score > 100 || isNaN(score)) {
+  document.write("Invalid score. Enter a number between 0 and 100.");
+} else {
+  var grade;
+
+  switch (Math.floor(score / 10)) {
+    case 10:
+    case 9:
+      grade = "A";
+      break;
+    case 8:
+      grade = "B";
+      break;
+    case 7:
+      grade = "C";
+      break;
+    case 6:
+      grade = "D";
+      break;
+    default:
+      grade = "F";
+  }
+
+  var status = score >= 40 ? "Passed" : "Failed";
+
+  document.write("Score: " + score + "<br>");
+  document.write("Grade: " + grade + "<br>");
+  document.write("Status: " + status + "<br>");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var products = [
+  { name: "Laptop", price: 800 },
+  { name: "Mouse", price: 25 },
+  { name: "Keyboard", price: 45 }
+];
+
+document.write("-- All Products (forEach) --<br>");
+products.forEach(function (p) {
+  document.write("Item: " + p.name + " - Price: $" + p.price + "<br>");
+});
+
+document.write("-- Filtered Products (Price < $50) --<br>");
+var cheap = products.filter(function (p) {
+  return p.price < 50;
+});
+document.write(JSON.stringify(cheap) + "<br>");
+
+document.write("-- Mapped Product Tags (map) --<br>");
+var tags = products.map(function (p) {
+  return p.name.toUpperCase() + " costs $" + p.price;
+});
+document.write(JSON.stringify(tags) + "<br>");
+</script>
+</body>
+</html>

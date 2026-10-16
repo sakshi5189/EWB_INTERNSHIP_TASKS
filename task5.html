@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function rectangleArea(length = 5, width = 4) {
+  return length * width;
+}
+
+var rectangleAreaArrow = (length = 5, width = 4) => length * width;
+
+document.write("Standard Function Area (Default 5x4): " + rectangleArea() + "<br>");
+document.write("Arrow Function Area (Custom 10x3): " + rectangleAreaArrow(10, 3) + "<br>");
+
+{
+  let blockVar = "I live only inside this block";
+}
+
+try {
+  document.write(blockVar);
+} catch (error) {
+  document.write("Scope Test Error: " + error.name + ": " + error.message + " (when accessed outside block)<br>");
+}
+</script>
+</body>
+</html>

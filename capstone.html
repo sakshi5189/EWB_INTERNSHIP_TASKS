@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+document.write("--- Initializing Inventory System ---<br>");
+
+var inventory = [
+  { name: "Laptop", price: 800 },
+  { name: "Mouse", price: 25 }
+];
+
+var newName = "";
+var newPrice = 0;
+
+for (var attempt = 1; attempt <= 3; attempt++) {
+  var nameInput = prompt("Enter product name:");
+  var priceInput = prompt("Enter product price:");
+
+  if (nameInput === null || nameInput.trim() === "" || priceInput === null) {
+    document.write("Missing input, try again.<br>");
+    continue;
+  }
+
+  var price = Number(priceInput);
+
+  if (isNaN(price) || price <= 0) {
+    document.write("Invalid price, try again.<br>");
+    continue;
+  } else {
+    newName = nameInput.trim();
+    newPrice = price;
+    break;
+  }
+}
+
+if (newName !== "") {
+  var exists = false;
+  for (var i = 0; i < inventory.length; i++) {
+    if (inventory[i].name.toLowerCase() === newName.toLowerCase()) {
+      exists = true;
+      break;
+    }
+  }
+
+  if (exists) {
+    document.write(newName + " already exists. Not added.<br>");
+  } else {
+    inventory.push({ name: newName, price: newPrice });
+    document.write('[Prompt executed: User adds "' + newName + '" at "$' + newPrice + '"]<br>');
+  }
+} else {
+  document.write("No valid product entered.<br>");
+}
+
+function getCategory(price) {
+  var level;
+  if (price < 50) {
+    level = "low";
+  } else if (price <= 500) {
+    level = "mid";
+  } else {
+    level = "high";
+  }
+
+  switch (level) {
+    case "low":
+      return "Budget";
+    case "mid":
+      return "Standard";
+    case "high":
+      return "Premium";
+  }
+}
+
+function calculateTotal(items) {
+  var total = 0;
+  for (var j = 0; j < items.length; j++) {
+    total += items[j].price;
+  }
+  return total;
+}
+
+var applyTaxDiscount = (amount, tax, discount) => {
+  return amount + amount * tax / 100 - amount * discount / 100;
+};
+
+document.write("--- Processing Inventory Roster (forEach) ---<br>");
+inventory.forEach(function (item) {
+  document.write("* Item: " + item.name + " ($" + item.price + ") -> Category: " + getCategory(item.price) + "<br>");
+});
+
+document.write("--- Financial Analytics ---<br>");
+var totalValue = calculateTotal(inventory);
+document.write("Total Inventory Value: $" + totalValue + "<br>");
+
+var affordable = inventory
+  .filter(function (item) {
+    return item.price < 200;
+  })
+  .map(function (item) {
+    return item.name;
+  });
+document.write("Filtered Affordable Items (Under $200): " + JSON.stringify(affordable) + "<br>");
+
+var report = inventory.map(function (item) {
+  return item.name.toUpperCase() + ": $" + item.price;
+});
+document.write("Formatted Report List: " + JSON.stringify(report) + "<br>");
+
+document.write("Value after 18% tax and 10% discount: $" + applyTaxDiscount(totalValue, 18, 10) + "<br>");
+</script>
+</body>
+</html>
